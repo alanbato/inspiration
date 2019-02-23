@@ -1,33 +1,10 @@
-I like this idea of instead of actual chord its the intervals, that way it can be chosen seperatley what key its in
-
-https://thornepalmer.wordpress.com/2011/12/29/the-10-most-used-chord-progressions-in-pop-and-rock-and-roll/
-
-I – V – vi – IV (G – D – Em – C)
-Don’t Stop Believing Progression
-
-I – vi – IV – V (G – Em – C – D)
-the 50’s Progression
-
-I – V – vi – iii – IV – I – IV – V (G – D – Em – Bm – C – G – C – D)
-the Canon
-
-I – I – I – I – IV – IV – I – I – V – V – I – I (G – G – G – G – C – C – G – G – D – D – G – G)
-Blues Progression
-
-ii – IV – V (am – C – D)
-the Smoke on the Water Progression
-
-V – IV – I (D – C – G)
-the Sweet Home Progression
-
-vi – IV – I – V (em – C – G – D)
-rearrangement of the Don’t Stop Believing progression
-
-vi – V – IV – III (em – D – C – B (not Bm!)
-Descending Flamenco Progression
-
-vi – V – VI – V (em – D – C – D)
-Variation of the Descending Flamenco Progression
-
-ii – I – V6 – bVII (- VI) (am – G – D/f# – F (- E))
-As My Guitar Gently Weeps Progression
+I â€“ V â€“ vi â€“ IV
+I â€“ vi â€“ IV â€“ V
+I â€“ V â€“ vi â€“ iii â€“ IV â€“ I â€“ IV â€“ V
+I â€“ I â€“ I â€“ I â€“ IV â€“ IV â€“ I â€“ I â€“ V â€“ V â€“ I â€“ I
+ii â€“ IV â€“ V
+V â€“ IV â€“ I
+vi â€“ IV â€“ I â€“ V
+vi â€“ V â€“ IV â€“ III
+vi â€“ V â€“ VI â€“ V
+ii â€“ I â€“ V6 â€“ bVII (- VI)
