@@ -19,20 +19,14 @@ def get_frequency(grams, universe):
     freqs = [counts[gram] for gram in universe]
     return freqs
 
-def main(songs):
-    print('Songs:')
-    print(songs)
+def get_frequency_matrix(songs):
     k_grams = [get_k_grams(song) for song in songs]
     union = T_union(k_grams)
-    print('Union:')
-    print(*union)
     songs_in_freqs = [
-        get_frequency(grams, union)
-        for grams in k_grams
+        get_frequency(song_grams, union)
+        for song_grams in k_grams
     ]
-    print('Freq Matrix')
-    for song in songs_in_freqs:
-        print(song)
+    return songs_in_freqs
     
 
 
