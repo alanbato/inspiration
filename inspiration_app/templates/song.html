@@ -16,21 +16,25 @@
         <div class="container">
             <div class="row song-row">
                 <div class="col s8 offset-s2 center">
-                    <h4>test, What you think about these songs?</h4>
+                    <h4>{{ data['user']  }}, what do you think about this song?</h4>
                 </div>
                 <div class="col s6 offset-s3 center">
                     <audio controls class="play-song">
-                        <source src="/static/songs/song.mp3" type="audio/mp3" />
+                        <source src="{{ data['url_file'] }}" type="audio/mp3" />
                     </audio>
                 </div>
                 <div class="col s8 offset-s2 center">
-                    <div class="col s6 impression">
-                        <img src="/static/img/like.png" alt="">
+                        <div class="col s6 impression">
+                            <a href="{{ url_for('like_song', username=data['user'], song_id=data['song_id']) }}">
+                                <img src="/static/img/like.png" id="1">
+                            </a>
+                        </div>
+                        <div class="col s6 impression">
+                            <a href="{{ url_for('new_song', user=data['user']) }}">
+                                <img src="/static/img/dislike.png" id="0">
+                            </a>
+                        </div>
                     </div>
-                    <div class="col s6 impression">
-                        <img src="/static/img/dislike.png" alt="">
-                    </div>
-                </div>
             </div>
         </div>
     </section>

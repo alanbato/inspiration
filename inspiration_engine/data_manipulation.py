@@ -5,6 +5,8 @@ from pathlib import Path
 NOTES = 'I II III IV V VI VII'.split()
 
 def parse_song(song_str):
+    if '–' in song_str:
+        return song_str.split('–')
     if '-' in song_str:
         return song_str.split('-')
     elif ',' in song_str:

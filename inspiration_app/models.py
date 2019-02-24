@@ -13,8 +13,6 @@ class User(db.Model):
     liked_songs = db.relationship(
         'Song',
         secondary=songs_liked,
-        primaryjoin=(songs_liked.c.user == id),
-        secondaryjoin=(songs_liked.c.song == id),
         backref=db.backref('liked_by', lazy='dynamic'),
         lazy='dynamic',
     )
@@ -31,7 +29,7 @@ class Song(db.Model):
     key_id = db.Column(db.Integer, db.ForeignKey('key.id'))
     
     def __repr__(self):
-        return '<{} {}>'.format(type(self).__name__, self.name)
+        return '<{} {}>'.format(type(self).__name__, self.file_url)
 
 class Key(db.Model):
     __tablename__ = 'key'

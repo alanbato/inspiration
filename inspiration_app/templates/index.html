@@ -18,9 +18,10 @@
                 <div class="col s12">
                     <h2>Welcome to Inspiration</h2>
                 </div>
-                <div class="input-field col s4">
+                <div class="input-field col s12 l4">
                     <input type="text" name="username" id="username"  required>
                     <label>Tell us what's your name!</label>
+                    <input id="url" val="{{ data['url_web'] }}" hidden />
                 </div>
             </div>
         </div>
@@ -36,7 +37,8 @@
     $('#username').on('keypress', function (e) {
         if(e.which === 13){
             var username = $('#username').val();
-            window.location.replace("http://localhost:5000/song/"+username);
+            var url_web = $('#url').val();
+            window.location.replace(url_web+username+"/new");
         }
     });
     </script>   

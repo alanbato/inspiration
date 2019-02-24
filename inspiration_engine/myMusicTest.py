@@ -229,19 +229,23 @@ harm_max = 5.
 ##########################################################################
 
 def musicStyle(musicSTYLE):
-    returnStyleMusic = {"Rock":{"tempo": 120, "notelength": 4},
-    "Early Rock":{"tempo": 120, "notelength": 4},
-    "Classical":{"tempo": 90, "notelength": 2},
-    "Blues":{"tempo": 100, "notelength": 2},
-    "Des Scale":{"tempo": 90, "notelength": 2},
-    "Circle 5":{"tempo": 90, "notelength": 2}}
+    returnStyleMusic = {"Rock":{"tempo": 160, "notelength": 8, "loop": 4, "playing_style": 0.6},
+    "Early Rock":{"tempo": 160, "notelength": 8, "loop": 4, "playing_style": 0.6},
+	"Pop":{"tempo": 140, "notelength": 4, "loop": 4, "playing_style": 0.6},
+    "Classical":{"tempo": 90, "notelength": 1, "loop": 2, "playing_style": 0.9},
+    "Blues":{"tempo": 120, "notelength": [-2, 8], "loop": 4, "playing_style": 0.8},
+    "Des Scale":{"tempo": 80, "notelength": 2, "loop": 2, "playing_style": 0.6},
+    "Circle 5":{"tempo": 90, "notelength": 2, "loop": 4, "playing_style": 0.6}}
 
     return returnStyleMusic[musicSTYLE]
 
 
 def wavListCreator(input_list, output_files, musicSTYLE):
     wav_lists = [[] for _ in range(0,4)]
-    randomOctave = randint(3,5)
+    randomOctave = 4
+
+    iterator = 0
+    sticato = ["", "*"]
 
     theStyleOfMusicPassed = musicStyle(musicSTYLE) #passes tempo and length of notes
 
@@ -251,12 +255,28 @@ def wavListCreator(input_list, output_files, musicSTYLE):
         ourChord = chord_progression[eachinput][randomChord] # assign a random chord variable (i.e. chord A)
 
         for x, list in enumerate(wav_lists):
-            list.append([ourChord[x]+str(randomOctave), theStyleOfMusicPassed["notelength"]])
+            # if x <=3:
+            for i in range(0,theStyleOfMusicPassed["loop"]):
+                if (musicSTYLE == "Blues"):
+                    list.append([ourChord[x]+str(randomOctave)+sticato[iterator], theStyleOfMusicPassed["notelength"][iterator]])
+                    if iterator == 0:
+                        iterator = 1
+                    else:
+                        iterator = 0
+                else:
+                    list.append([ourChord[x]+str(randomOctave), theStyleOfMusicPassed["notelength"]])
+            # else:
+            #     list.append([ourChord[0]+"3", theStyleOfMusicPassed["notelength"]])
 
-    print (wav_lists)
+    for x in wav_lists:
+        print (x)
 
     for num in range(0,4):
-        make_wav(wav_lists[num], fn = output_files[num], bpm = theStyleOfMusicPassed["tempo"])
+        if (musicSTYLE == "Blues"):
+            make_wav(wav_lists[num], fn = output_files[num], bpm = theStyleOfMusicPassed["tempo"], leg_stac = theStyleOfMusicPassed["playing_style"])
+        else:
+            make_wav(wav_lists[num], fn = output_files[num], bpm = theStyleOfMusicPassed["tempo"], leg_stac = theStyleOfMusicPassed["playing_style"])
+    # make_wav(wav_lists[4], fn = output_files[4], bpm = theStyleOfMusicPassed["tempo"])
 
 
 def make_wav(song,bpm=120,transpose=0,leg_stac=.9,boost=1.1,repeat=0,fn="out.wav", silent=False):
@@ -409,7 +429,7 @@ def mergeWavFiles(fileList, final_song):
 if __name__ == '__main__':
     print("*** TEST VERSION ***")
 
-    input_list = ["I", "IV", "II"]
+    input_list = ["I", "I", "I", "I", "IV", "IV", "I", "I", "V", "V", "I", "I"]
     output_files = ["CS1.wav", "CS2.wav", "CS3.wav", "CS4.wav"]
     final_song = "FINAL_SONG.wav"
 

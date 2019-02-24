@@ -20,7 +20,7 @@ CORS(app)
 basedir = os.path.abspath(os.path.dirname(__file__))
 TYPEFORM_KEY = '91a81GGkfUWdBa38YWPG6zygkx4vvKD5eNFpKKcKykFW'
 MODEL_FILENAME = '/Users/alanbato/Code/inspiration/inspiration_app/kmeans_model.sav'
-
+URL_WEB = 'https://3183e6e5.ngrok.io'
 
 @app.shell_context_processor
 def make_shell_context():
@@ -58,7 +58,7 @@ def landing():
     )
     
     form_link = response.json()['_links']['display']
-    return render_template('index.html', data={'form_url': form_link})
+    return render_template('index.html', data={'form_url': form_link, 'url_web': URL_WEB})
 
 @app.route('/populate')
 def populate_db():
@@ -91,20 +91,21 @@ def populate_db():
 def like_song(username, song_id):
     user = User.query.filter(User.username == username).first()
     song = Song.query.get(int(song_id))
-    if songs_liked.query.filter(user==user.id, song==song.id).count() > 0:
-        print('User {} already liked that song'.format(username))
-    else:
+    print('like', user, song)
+    try:
         user.liked_songs.append(song)
         db.session.add(user)
         db.session.commit()
-        print('User {} now likes {}'.format(username, song_id))
+        print('song liked')
+    except Exception as e:
+        print(e)
+        db.session.rollback()
+    print('User {} now likes {}'.format(username, song_id))
     return redirect(url_for('new_song', user=username))
 
 @app.route('/login/<username>')
 def login(username):
     return "Not Implemented"
-
-
 
 @app.route('/add/<numerals>')
 def add_song_route(numerals):
@@ -112,7 +113,38 @@ def add_song_route(numerals):
 
 @app.route('/<user>/new')
 def new_song(user):
-    return "Not Implemented"
+    # Random song
+    username = user
+    user = User.query.filter(User.username == username).first()
+    if not user:
+        user = User(username=username)
+        db.session.add(user)
+        db.session.commit()
+        song = random.choice(Song.query.all())
+        song_url = song.file_url
+        song_id = song.id
+    else:
+        magic = random.randint(1,4)
+        if magic == 1 and user.liked_songs.first() is not None:
+            cluster = random.choice(user.liked_songs.all()).template.cluster
+            rand_template = random.choice(cluster.templates.all())
+            song_url, song_id = make_song_from_numeral(rand_template)
+            song_url = '/' + song_url
+        elif magic == 2 and user.liked_songs.first() is not None:
+            cluster = random.choice(user.liked_songs.all()).template.cluster
+            rand_template = random.choice(cluster.templates.all())
+            rand_song = random.choice(rand_template.songs.all())
+            song_url = rand_song.file_url
+            song_id = rand_song.id
+        elif magic == 3:
+            rand_template = random.choice(SongTemplate.query.all())
+            song_url, song_id = make_song_from_numeral(rand_template)
+            song_url = '/' + song_url
+        else:
+            song = random.choice(Song.query.all())
+            song_url = song.file_url
+            song_id = song.id
+    return render_template('song.html', data={'url_file': song_url, 'song_id': song_id, 'user': user.username, 'url_web': URL_WEB})
     
     
 @app.route('/new_song/<song_template_id>')
@@ -125,7 +157,7 @@ def make_song_from_numeral(song_template):
     numeral_list = dm.parse_song(numerals)
     music_style = song_template.cluster.name
     output_files = ["CS1.wav", "CS2.wav", "CS3.wav", "CS4.wav"]
-    output_files = ["static/{}".format(filename) for filename in output_files]
+    #output_files = ["{}".format(filename) for filename in output_files]
     song_name = "".join(random.choices(ascii_letters, k=10))
     final_song_filename = "static/songs/{}.wav".format(song_name)
     print(music_style)
@@ -134,7 +166,7 @@ def make_song_from_numeral(song_template):
     key = Key.query.first()
     tempo = Tempo.query.first()
     try:
-        new_song = Song(file_url=final_song_filename, template=song_template, key=key, tempo=tempo)
+        new_song = Song(file_url='/'+final_song_filename, template=song_template, key=key, tempo=tempo)
         db.session.add(new_song)
         db.session.commit()
     except Exception as e:
@@ -142,7 +174,7 @@ def make_song_from_numeral(song_template):
         db.session.rollback()
         return "Song creation failed for: {}".format(numerals)
     else:
-        return "Song created: {}".format(song_name)
+        return final_song_filename, new_song.id
 
 
 
