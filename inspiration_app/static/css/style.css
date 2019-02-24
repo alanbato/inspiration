@@ -19,8 +19,8 @@ body{
 
 /*~~ Home ~~*/
 #home{
-  /*background: url('/static/img/backgrounds/background-1.jpg') no-repeat center center ; */
-  background: #fff ; 
+  background: url('/static/img/note.png') no-repeat center center ; 
+  background-color: rgba(255, 255, 255, .2)
   -webkit-background-size: cover;
   -moz-background-size: cover;
   height: 100%;
@@ -28,9 +28,16 @@ body{
   background-size: cover; 
 }
 
+#home #name-form{
+  padding-top: 100px
+}
+
+#home #name-form input{
+  font-size: 30px
+}
+
 
 #songs{
-  /*background: url('/static/img/backgrounds/background-1.jpg') no-repeat center center ; */
   background: #fff ; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -40,26 +47,26 @@ body{
 }
 
 #songs .play-song{
-    width: 100%
+    width: 100%;
+    margin-top: 35px
 }
 
 #songs .impression img{
-    width: 50px;
+    width: 80px;
+    cursor: pointer;
 }
 
 #songs .impression{
     padding: 20px;
-    cursor: pointer;
+    padding-top: 35px
 }
 
 #songs #like{
-    background: #dcdcdc;
     margin-left: 5%;
     width: 45%
 }
 
 #songs #next{
-    background: #efefef;
     margin-right: 5%;
     width: 45%
 }

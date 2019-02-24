@@ -4,38 +4,41 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-    <title>Pickle</title>
+    <title>Inspiration - Musical prompt</title>
     <link rel="stylesheet" href="/static/css/materialize.min.css">
     <link rel="stylesheet" href="/static/css/style.css">
-    <link rel="stylesheet" href="/static/css/responsive.css--">
+    <!-- <link rel="stylesheet" href="/static/css/responsive.css"> -->
+
 </head>
 <body>
 
-    <!-- <section id="home" class   ="valign-wrapper" style="display: none;">
+    <section id="home">
         <div class="container">
-            <div class="row">
-                <div class="col s6 offset-s3 center">
-                    <h1>Pickle</h1>
+            <div id="name-form" class="row">
+                <div class="col s12">
+                    <h2>Welcome to Inspiration</h2>
                 </div>
-                <div class="input-field col s6 offset-s3">
-                    <input type="text" name="fname" id="fname"  required>
-                    <label>Your name</label>
-                </div>
-            </div>
-        </div>
-    </section--> 
-
-    <section id="songs">
-        <div class="container">
-            <div class="row">
-                <a href="{{ data['form_url'] }}"><span id="formLink"> Find your taste in songs</span></a>
-                <div class="col center" id="form">
+                <div class="input-field col s4">
+                    <input type="text" name="username" id="username"  required>
+                    <label>Tell us what's your name!</label>
                 </div>
             </div>
         </div>
     </section>
 
-    <script type="text/javascript" src="https://embed.typeform.com/embed.js"></script>
+
+    <script src="/static/js/jquery-2.2.4.min.js"></script>
+    <script src="/static/js/materialize.min.js"></script>   
     <script src="/static/js/script.js"></script>
+
+    <script>
+
+    $('#username').on('keypress', function (e) {
+        if(e.which === 13){
+            var username = $('#username').val();
+            window.location.replace("http://localhost:5000/song/"+username);
+        }
+    });
+    </script>   
 </body>
 </html>
