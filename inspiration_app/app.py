@@ -9,7 +9,7 @@ from flask_cors import CORS
 import requests
 import json
 
-from inspiration_app.models import User, Song, SongTemplate, Key, Tempo, Cluster
+from inspiration_app.models import User, Song, SongTemplate, Key, Tempo, Cluster, songs_liked
 from inspiration_app import db, app
 
 import inspiration_engine.data_manipulation as dm
@@ -87,13 +87,33 @@ def populate_db():
     else:
         return "DB Populated with {} song(s).".format(len(songs))
 
+@app.route('/like/<username>/<song_id>')
+def like_song(username, song_id):
+    user = User.query.filter(User.username == username).first()
+    song = Song.query.get(int(song_id))
+    if songs_liked.query.filter(user==user.id, song==song.id).count() > 0:
+        print('User {} already liked that song'.format(username))
+    else:
+        user.liked_songs.append(song)
+        db.session.add(user)
+        db.session.commit()
+        print('User {} now likes {}'.format(username, song_id))
+    return redirect(url_for('new_song', user=username))
+
+@app.route('/login/<username>')
+def login(username):
+    return "Not Implemented"
+
+
+
 @app.route('/add/<numerals>')
 def add_song_route(numerals):
     return add_song(numerals)
 
 @app.route('/<user>/new')
 def new_song(user):
-    pass
+    return "Not Implemented"
+    
     
 @app.route('/new_song/<song_template_id>')
 def make_song_route(song_template_id):
@@ -104,7 +124,7 @@ def make_song_from_numeral(song_template):
     numerals = song_template.numerals
     numeral_list = dm.parse_song(numerals)
     output_files = ["CS1.wav", "CS2.wav", "CS3.wav", "CS4.wav"]
-    output_files ["static/" + filename for filename in output_files]
+    output_files = ["static/{}".format(filename) for filename in output_files]
     song_name = "".join(random.choices(ascii_letters, k=10))
     final_song_filename = "static/songs/{}.wav".format(song_name)
     wavListCreator(numeral_list, output_files)
@@ -121,8 +141,6 @@ def make_song_from_numeral(song_template):
         return "Song creation failed for: {}".format(numerals)
     else:
         return "Song created: {}".format(song_name)
-
-
 
 
 
