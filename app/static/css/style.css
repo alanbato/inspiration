@@ -1,0 +1,65 @@
+@font-face {
+    font-family: 'roihu';
+    src: url(/static/fonts/Roihu-Regular.otf);
+}
+
+html{
+    height: 100%; 
+    sans-serif;
+}
+body{
+    height: 100%;
+    font-family: 'roihu';
+    background-color: #fff;
+    color: #000;
+}
+.container{
+    width: 90% !important
+}
+
+/*~~ Home ~~*/
+#home{
+  /*background: url('/static/img/backgrounds/background-1.jpg') no-repeat center center ; */
+  background: #fff ; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  height: 100%;
+  -o-background-size: cover;
+  background-size: cover; 
+}
+
+
+#songs{
+  /*background: url('/static/img/backgrounds/background-1.jpg') no-repeat center center ; */
+  background: #fff ; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  height: 100%;
+  -o-background-size: cover;
+  background-size: cover; 
+}
+
+#songs .play-song{
+    width: 100%
+}
+
+#songs .impression img{
+    width: 50px;
+}
+
+#songs .impression{
+    padding: 20px;
+    cursor: pointer;
+}
+
+#songs #like{
+    background: #dcdcdc;
+    margin-left: 5%;
+    width: 45%
+}
+
+#songs #next{
+    background: #efefef;
+    margin-right: 5%;
+    width: 45%
+}
