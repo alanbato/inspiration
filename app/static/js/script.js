@@ -1,7 +1,8 @@
+const link = document.querySelector('#formLink').innerHTML
 const embedElement = document.querySelector('#form')
 typeformEmbed.makeWidget(
     embedElement,
-    'http://inspiration-hackcu.typeform.com/to/UKTXV4', // NOTE: Replace with your typeform URL
+    link, // NOTE: Replace with your typeform URL
     {
     hideHeaders: true,
     hideFooter: true,
