@@ -38,24 +38,20 @@
     <script src="static/js/Embed.js"></script>
     <!-- <script src="/static/js/script.js"></script> -->
     <script>
-        const reference = typeformEmbed.makePopup(
-  'https://developerplatform.typeform.com/to/Xc7NMh', // NOTE: Replace with your typeform URL
-  {
-    mode: 'popup',
-    autoClose: 3000,
-    hideHeaders: true,
-    hideFooters: true,
-    onSubmit: function () {
-      console.log('Typeform successfully submitted')
-    }
-  }
-)
-
-reference.open()
-
-setTimeout(function(){
-  reference.close()
- }, 10000) // NOTE: In this code, the typeform will automatically open, then automatically close 10 seconds later
+        const embedElement = document.querySelector('#form')
+        typeformEmbed.makeWidget(
+            embedElement,
+            'http://inspiration-hackcu.typeform.com/to/UKTXV4', // NOTE: Replace with your typeform URL
+            {
+            hideHeaders: true,
+            hideFooter: true,
+            opacity: 0,
+            buttonText: "Find your taste in music!",
+            onSubmit: function () {
+                console.log('Preferences successfully submitted')
+            }
+            }
+        )
     </script>
 </body>
 </html>
