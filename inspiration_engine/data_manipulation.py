@@ -5,7 +5,12 @@ from pathlib import Path
 NOTES = 'I II III IV V VI VII'.split()
 
 def parse_song(song_str):
-    return song_str.split('-')
+    if '-' in song_str:
+        return song_str.split('-')
+    elif ',' in song_str:
+        return song_str.split(',')
+    else:
+        raise ValueError('Unrecognized separator for {}'.format(song_str))
 
 def parse_file(filepath):
     with open(filepath) as song_file:

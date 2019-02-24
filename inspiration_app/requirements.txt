@@ -43,9 +43,12 @@ pickleshare==0.7.5
 prometheus-client==0.6.0
 prompt-toolkit==2.0.9
 ptyprocess==0.6.0
+pydub==0.23.1
 Pygments==2.3.1
 pyparsing==2.3.1
+PySynth==2.3
 python-dateutil==2.8.0
+python-dotenv==0.10.1
 python-editor==1.0.4
 pytz==2018.9
 pyzmq==18.0.0

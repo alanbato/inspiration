@@ -14,6 +14,7 @@ from inspiration_app import db, app
 
 import inspiration_engine.data_manipulation as dm
 import inspiration_engine.clustering as clustering
+from inspiration_engine.myMusicTest import wavListCreator, mergeWavFiles
 CORS(app)
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -93,6 +94,37 @@ def add_song_route(numerals):
 @app.route('/<user>/new')
 def new_song(user):
     pass
+    
+@app.route('/new_song/<song_template_id>')
+def make_song_route(song_template_id):
+    template = SongTemplate.query.get(song_template_id)
+    return make_song_from_numeral(template)
+
+def make_song_from_numeral(song_template):
+    numerals = song_template.numerals
+    numeral_list = dm.parse_song(numerals)
+    output_files = ["CS1.wav", "CS2.wav", "CS3.wav", "CS4.wav"]
+    output_files ["static/" + filename for filename in output_files]
+    song_name = "".join(random.choices(ascii_letters, k=10))
+    final_song_filename = "static/songs/{}.wav".format(song_name)
+    wavListCreator(numeral_list, output_files)
+    mergeWavFiles(output_files, final_song_filename)
+    key = Key.query.first()
+    tempo = Tempo.query.first()
+    try:
+        new_song = Song(file_url=final_song_filename, template=song_template, key=key, tempo=tempo)
+        db.session.add(new_song)
+        db.session.commit()
+    except Exception as e:
+        print(e)
+        db.session.rollback()
+        return "Song creation failed for: {}".format(numerals)
+    else:
+        return "Song created: {}".format(song_name)
+
+
+
+
 
 def add_song(numerals):
     song = dm.parse_song(numerals)
