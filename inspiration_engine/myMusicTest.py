@@ -38,128 +38,64 @@ from pydub import AudioSegment
 
 pitchhz, keynum = getfreq()
 
-A = ["a", "c#", "e", "e"]
-B = ["a", "c#", "e", "e"]
-C = ["a", "c#", "e", "e"]
-D = ["d", "f#", "a", "e"]
-E = ["e", "g#", "b", "e"]
+
+Bd = ["b", "d", "f", "b"]
+Fsd = ["f#", "a", "c", "f#"]
+Csd = ["c#", "eb", "gb", "c#"]
+Gsd = ["g#", "b", "d", "g#"]
+Dsd = ["d#", "f#", "a", "d#"]
+Asd = ["a#", "db", "e", "a#"]
+Esd = ["f", "a#", "b", "f"]
+Cd = ["c", "eb", "gb", "c"]
+Ad = ["a", "c", "eb", "a"]
+Dd = ["d", "f", "ab", "d"]
+Gd = ["g", "bb", "ab", "g"]
+Fd = ["f", "ab", "b", "f"]
+Bbd = ["bb", "db", "e", "bb"]
+
+A = ["a", "c#", "e", "g#"]
+B = ["b", "d#", "f#", "a#"]
+C = ["c", "e", "g", "d#"]
+D = ["d", "f#", "a", "c#"]
+E = ["e", "g#", "b", "d#"]
 F = ["f", "a", "c", "e"]
-G = ["g", "b", "d", "e"]
-As = ["db", "f", "ab", "e"]
-Bs = ["db", "f", "ab", "e"]
-Cs = ["db", "f", "ab", "e"]
-Ds = ["db", "f", "ab", "e"]
-Es = ["db", "f", "ab", "e"]
-Fs = ["db", "f", "ab", "e"]
-Gs = ["db", "f", "ab", "e"]
-Ab = ["db", "f", "ab", "e"]
-Cb = ["db", "f", "ab", "e"]
-Bb = ["db", "f", "ab", "e"]
-Db = ["db", "f", "ab", "e"]
-Eb = ["db", "f", "ab", "e"]
-Fb = ["db", "f", "ab", "e"]
-Gb = ["db", "f", "ab", "e"]
-Am = ["db", "f", "ab", "e"]
-Bm = ["db", "f", "ab", "e"]
-Cm = ["db", "f", "ab", "e"]
-Dm = ["db", "f", "ab", "e"]
-Em = ["db", "f", "ab", "e"]
-Fm = ["db", "f", "ab", "e"]
-Gm = ["db", "f", "ab", "e"]
-Ad = ["db", "f", "ab", "e"]
-Bd = ["db", "f", "ab", "e"]
-Cd = ["db", "f", "ab", "e"]
-Dd = ["db", "f", "ab", "e"]
-Ed = ["db", "f", "ab", "e"]
-Fd = ["db", "f", "ab", "e"]
-Gd = ["db", "f", "ab", "e"]
-Abm = ["db", "f", "ab", "e"]
-Bbm = ["db", "f", "ab", "e"]
-Cbm = ["db", "f", "ab", "e"]
-Dbm = ["db", "f", "ab", "e"]
-Ebm = ["db", "f", "ab", "e"]
-Fbm = ["db", "f", "ab", "e"]
-Gbm = ["db", "f", "ab", "e"]
-Asm = ["db", "f", "ab", "e"]
-Bsm = ["db", "f", "ab", "e"]
-Csm = ["db", "f", "ab", "e"]
-Dsm = ["db", "f", "ab", "e"]
-Esm = ["db", "f", "ab", "e"]
-Fsm = ["db", "f", "ab", "e"]
-Gsm = ["db", "f", "ab", "e"]
-Abd = ["db", "f", "ab", "e"]
-Bbd = ["db", "f", "ab", "e"]
-Cbd = ["db", "f", "ab", "e"]
-Dbd = ["db", "f", "ab", "e"]
-Ebd = ["db", "f", "ab", "e"]
-Fbd = ["db", "f", "ab", "e"]
-Gbd = ["db", "f", "ab", "e"]
-Asd = ["db", "f", "ab", "e"]
-Bsd = ["db", "f", "ab", "e"]
-Csd = ["db", "f", "ab", "e"]
-Dsd = ["db", "f", "ab", "e"]
-Esd = ["db", "f", "ab", "e"]
-Fsd = ["db", "f", "ab", "e"]
-Gsd = ["db", "f", "ab", "e"]
+G = ["g", "b", "d", "f#"]
+Cs = ["c#", "f", "g#", "c"]
+Ds = ["d#", "g", "a#", "d"]
+## Es = F
+Fs = ["f#", "a#", "c#", "f"]
+Gs = ["g#", "c", "d#", "g"]
+As = ["a#", "d", "f", "a"]
+## Bs = C
+Cb = ["b", "d#", "f#", "a#"]
+Db = ["db", "f", "ab", "c"]
+Eb = ["eb", "g", "a#", "d"]
+##Fb = E
+Gb = ["gb", "a#", "db", "f"]
+Ab = ["ab", "c", "eb", "g"]
+Bb = ["a#", "d", "f", "a"]
 
-
-# Bd = ["b", "d", "f", "r"]
-# Fsd = ["fs", "a", "c", "r"]
-# Csd = ["cs", "eb", "gb", "r"]
-# Gsd = ["gs", "b", "d", "r"]
-# Dsd = ["ds", "fs", "a", "r"]
-# Asd = ["as", "db", "e", "r"]
-# Esd = ["f", "as", "b", "r"]
-# Cd = ["c", "eb", "gb", "r"]
-# Ad = ["a", "c", "eb", "r"]
-# Dd = ["d", "f", "ab", "r"]
-# Gd = ["g", "bb", "ab", "r"]
-# Fd = ["f", "ab", "b", "r"]
-# Bbd = ["bb", "db", "e", "r"]
-#
-# A = ["a", "c#", "e", "gs"]
-# B = ["b", "ds", "fs", "as"]
-# C = ["c", "e", "g", "ds"]
-# D = ["d", "fs", "a", "cs"]
-# E = ["e", "gs", "b", "ds"]
-# F = ["f", "a", "c", "e"]
-# G = ["g", "b", "d", "fs"]
-# Cs = ["cs", "f", "gs", "c"]
-# Ds = ["ds", "g", "as", "d"]
-# ## Es = F
-# Fs = ["fs", "as", "cs", "f"]
-# Gs = ["gs", "c", "ds", "g"]
-# As = ["as", "d", "f", "a"]
-# ## Bs = C
-# Cb = B
-# Db = ["db", "f", "ab", "c"]
-# Eb = ["eb", "g", "as", "d"]
-# ##Fb = E
-# Gb = ["gb", "as", "db", "f"]
-# Ab = ["ab", "c", "eb", "g"]
-# Bb = ["as", "d", "f", "a"]
-#
-# Am = ["a", "c", "e", "g"]
-# Bm = ["b", "d", "fs", "a"]
-# Cm = ["c", "eb", "g", "d"]
-# Dm = ["d", "f", "a", "c"]
-# Em = ["e", "g", "b", "d"]
-# Fm = ["f", "ab", "c", "eb"]
-# Gm = ["g", "bb", "d", "f"]
-# Csm = ["cs", "e", "gs", "b"]
-# Dsm = ["ds", "gb", "as", "db"]
-# ## Es = F
-# Fsm = ["fs", "a", "cs", "e"]
-# Gsm = ["gs", "cb", "ds", "gb"]
-# Asm = ["as", "db", "f", "ab"]
-# ## Bs = C
-# ## Cb = B
-# Dbm = ["db", "e", "ab", "b"]
-# Ebm = ["eb", "gb", "as", "db"]
-# Fb = E
-# Gbm = ["gb", "a", "db", "e"]
-# Abm = ["ab", "b", "eb", "gb"]
-# Bbm = ["as", "db", "f", "ab"]
+Am = ["a", "c", "e", "g"]
+Bm = ["b", "d", "f#", "a"]
+Cm = ["c", "eb", "g", "d"]
+Dm = ["d", "f", "a", "c"]
+Em = ["e", "g", "b", "d"]
+Fm = ["f", "ab", "c", "eb"]
+Gm = ["g", "bb", "d", "f"]
+Csm = ["c#", "e", "g#", "b"]
+Dsm = ["d#", "gb", "a#", "db"]
+## Es = F
+Fsm = ["f#", "a", "c#", "e"]
+Gsm = ["g#", "cb", "d#", "gb"]
+Asm = ["a#", "db", "f", "ab"]
+## Bs = C
+## Cb = B
+Dbm = ["db", "e", "ab", "b"]
+Ebm = ["eb", "gb", "a#", "db"]
+Fb = ["e", "g#", "b", "d#"]
+Gbm = ["gb", "a", "db", "e"]
+Abm = ["ab", "b", "eb", "gb"]
+Bbm = ["a#", "db", "f", "ab"]
 
 chord_progression = {
 "I":
@@ -191,6 +127,40 @@ harmo = (
   (76, -18., -64.5, -74.4, -77.3, -80.8),
   (88, -24.8, -53.8, -77.2, -80.8, -90.),
 )
+
+def changeSong(randomNum):
+    x = randomNum
+
+    old =["I", "IV", "II", "III"]
+
+    newList = []
+
+    if x <= .5 :
+        newList = old[::-1]
+
+    else :
+        tempM = ["I", "IV", "V"]
+        tempm = ["II", "III", "VI", "VII"]
+
+        for x in range(len(old)):
+            if old[x] in tempM:
+                if old[x] == "V":
+                    newList.append("I")
+                elif old[x] == "I":
+                    newList.append("IV")
+                else:
+                    newList.append("V")
+            if old[x] in tempm:
+                if old[x] == "VII":
+                    newList.append("II")
+                elif old[x] == "II":
+                    newList.append("III")
+                elif old[x] == "III":
+                    newList.append("VI")
+                else :
+                    newList.append("VII")
+
+    return newList
 
 def linint(arr, x):
 	"Interpolate an (X, Y) array linearly."
@@ -258,27 +228,35 @@ for h2 in range(88):
 harm_max = 5.
 ##########################################################################
 
-# def musicStyle(style_music):
-#     styleMusic = {"Rock":{tempo:120, notelength: 4}, "Early Rock":{tempo:120, notelength: 4}, "Classical":{tempo:90, notelength: 2}}
+def musicStyle(musicSTYLE):
+    returnStyleMusic = {"Rock":{"tempo": 120, "notelength": 4},
+    "Early Rock":{"tempo": 120, "notelength": 4},
+    "Classical":{"tempo": 90, "notelength": 2},
+    "Blues":{"tempo": 100, "notelength": 2},
+    "Des Scale":{"tempo": 90, "notelength": 2},
+    "Circle 5":{"tempo": 90, "notelength": 2}}
+
+    return returnStyleMusic[musicSTYLE]
 
 
-def wavListCreator(input_list, output_files):
+def wavListCreator(input_list, output_files, musicSTYLE):
     wav_lists = [[] for _ in range(0,4)]
-    randomOctave = randint(1,5)
-    noteBeat = 1
+    randomOctave = randint(3,5)
+
+    theStyleOfMusicPassed = musicStyle(musicSTYLE) #passes tempo and length of notes
 
     for eachinput in input_list: #parse through every roman numeral
-        #randomChord = randint(0,13)
-        randomChord = 0
+        randomChord = randint(0,13)
+        # randomChord = 0
         ourChord = chord_progression[eachinput][randomChord] # assign a random chord variable (i.e. chord A)
 
         for x, list in enumerate(wav_lists):
-            list.append([ourChord[x]+str(randomOctave), noteBeat])
+            list.append([ourChord[x]+str(randomOctave), theStyleOfMusicPassed["notelength"]])
 
     print (wav_lists)
 
     for num in range(0,4):
-        make_wav(wav_lists[num], fn = output_files[num])
+        make_wav(wav_lists[num], fn = output_files[num], bpm = theStyleOfMusicPassed["tempo"])
 
 
 def make_wav(song,bpm=120,transpose=0,leg_stac=.9,boost=1.1,repeat=0,fn="out.wav", silent=False):
@@ -415,7 +393,12 @@ def mergeWavFiles(fileList, final_song):
     sound3 = AudioSegment.from_wav(fileList[2])
     sound4 = AudioSegment.from_wav(fileList[3])
 
-    combined_sounds = sound1 + sound2 + sound3 + sound4
+    # combined_sounds = sound1 + sound2 + sound3 + sound4
+
+    combined1 = sound1.overlay(sound2)
+    combined2 = combined1.overlay(sound3)
+    combined_sounds = combined2.overlay(sound4)
+
     combined_sounds.export(final_song, format="wav")
     print ("SUCCESS COMBINING!")
 
@@ -430,6 +413,8 @@ if __name__ == '__main__':
     output_files = ["CS1.wav", "CS2.wav", "CS3.wav", "CS4.wav"]
     final_song = "FINAL_SONG.wav"
 
-    wavListCreator(input_list, output_files)
+    musicSTYLE = "Blues"
+
+    wavListCreator(input_list, output_files, musicSTYLE)
 
     mergeWavFiles(output_files, final_song)

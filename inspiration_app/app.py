@@ -123,11 +123,13 @@ def make_song_route(song_template_id):
 def make_song_from_numeral(song_template):
     numerals = song_template.numerals
     numeral_list = dm.parse_song(numerals)
+    music_style = song_template.cluster.name
     output_files = ["CS1.wav", "CS2.wav", "CS3.wav", "CS4.wav"]
     output_files = ["static/{}".format(filename) for filename in output_files]
     song_name = "".join(random.choices(ascii_letters, k=10))
     final_song_filename = "static/songs/{}.wav".format(song_name)
-    wavListCreator(numeral_list, output_files)
+    print(music_style)
+    wavListCreator(numeral_list, output_files, musicSTYLE=music_style)
     mergeWavFiles(output_files, final_song_filename)
     key = Key.query.first()
     tempo = Tempo.query.first()
