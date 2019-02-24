@@ -1,6 +1,8 @@
 #!/usr/bin/python3
+import pickle
 
 from sklearn.cluster import KMeans
+from sklearn.externals import joblib
 
 def normalize(frequences):
     maxi = max([max(songFreq) for songFreq in frequences])
@@ -26,8 +28,15 @@ def distancesGraph(frequences):
     return matrix
 
 def clusterize(data):
-    model = KMeans(n_clusters=5, random_state=0).fit(data)
-    return model
+    model = KMeans(n_clusters=7, random_state=0).fit(data)
+    labeled_data = model.predict(data)
+    return model, labeled_data
+
+def save(model, filename):
+    joblib.dump(model, filename)
+
+def load(filename):
+    return joblib.load(filename)
 
 if __name__ == '__main__':
     #Notes: A B C D E F G
